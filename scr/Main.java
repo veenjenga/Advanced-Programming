@@ -16,7 +16,16 @@ public class Main {
 
         // WithdrawalTransaction instance
         BaseTransaction withdrawal = new WithdrawalTransaction(300, now, "T003");
-        withdrawal.apply(account);
-        System.out.println("Balance after withdrawal: " + account.getBalance());
+        try {
+            withdrawal.apply(account);
+            withdrawal.printTransactionDetails();
+            System.out.println("Balance after withdrawal: " + account.getBalance());
+        } catch (InsufficientFundsException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Reversing the withdrawal
+        withdrawal.reverse(account);
+        System.out.println("Balance after reversal: " + account.getBalance());
     }
 }
