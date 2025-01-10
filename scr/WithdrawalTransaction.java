@@ -6,13 +6,7 @@ import java.util.Calendar;
 public class WithdrawalTransaction extends BaseTransaction {
 
     /**
-     * Constructor for a WithdrawalTransaction.
-     *
-     * Requires:
-     * - `amount > 0` (A positive withdrawal amount)
-     *
-     * Produces:
-     * - Initializes a withdrawal transaction with the specified details.
+     * Constructor for WithdrawalTransaction.
      *
      * @param amount       The withdrawal amount.
      * @param date         The transaction date.
@@ -22,19 +16,18 @@ public class WithdrawalTransaction extends BaseTransaction {
         super(amount, date, transactionID);
     }
 
+    /**
+     * Applies a withdrawal transaction to the specified bank account.
+     *
+     * @param ba The bank account to which the withdrawal is applied.
+     */
     @Override
-    public void apply(BankAccount ba) throws InsufficientFundsException {
-        if (ba.getBalance() >= amount) {
+    public void apply(BankAccount ba) {
+        try {
             ba.withdraw(amount);
-            System.out.println("Withdrawal of " + amount + " applied.");
-        } else {
-            throw new InsufficientFundsException("Insufficient funds for withdrawal.");
+            System.out.println("WithdrawalTransaction: Withdrew " + amount);
+        } catch (InsufficientFundsException e) {
+            System.out.println("WithdrawalTransaction: " + e.getMessage());
         }
-    }
-
-    public boolean reverse(BankAccount ba) {
-        ba.deposit(amount);
-        System.out.println("Withdrawal reversed. Amount restored: " + amount);
-        return true;
     }
 }

@@ -6,13 +6,7 @@ import java.util.Calendar;
 public class DepositTransaction extends BaseTransaction {
 
     /**
-     * Constructor for a DepositTransaction.
-     *
-     * Requires:
-     * - `amount > 0` (A positive deposit amount)
-     *
-     * Produces:
-     * - Initializes a deposit transaction with the specified details.
+     * Constructor for DepositTransaction.
      *
      * @param amount       The deposit amount.
      * @param date         The transaction date.
@@ -22,9 +16,14 @@ public class DepositTransaction extends BaseTransaction {
         super(amount, date, transactionID);
     }
 
+    /**
+     * Applies a deposit transaction to the specified bank account.
+     *
+     * @param ba The bank account to which the deposit is applied.
+     */
     @Override
     public void apply(BankAccount ba) {
         ba.deposit(amount);
-        System.out.println("Deposit of " + amount + " applied.");
+        System.out.println("DepositTransaction: Deposited " + amount);
     }
 }
