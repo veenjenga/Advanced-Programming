@@ -1,10 +1,27 @@
 import java.util.Calendar;
 
+/**
+ * Abstract base class for all types of transactions.
+ */
 public abstract class BaseTransaction implements TransactionInterface {
     protected double amount;
     protected Calendar date;
     protected String transactionID;
 
+    /**
+     * Constructor for a BaseTransaction.
+     *
+     * Requires:
+     * - `amount > 0` (A positive transaction amount)
+     * - `transactionID` is non-null and unique.
+     *
+     * Produces:
+     * - Initializes a transaction with the specified details.
+     *
+     * @param amount       The transaction amount.
+     * @param date         The transaction date.
+     * @param transactionID A unique identifier for the transaction.
+     */
     public BaseTransaction(double amount, Calendar date, String transactionID) {
         this.amount = amount;
         this.date = date;
@@ -34,5 +51,5 @@ public abstract class BaseTransaction implements TransactionInterface {
     }
 
     @Override
-    public abstract void apply(BankAccount ba) throws InsufficientFundsException; // Matches interface
+    public abstract void apply(BankAccount ba) throws InsufficientFundsException;
 }

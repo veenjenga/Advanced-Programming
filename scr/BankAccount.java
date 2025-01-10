@@ -1,6 +1,14 @@
+/**
+ * Represents a bank account.
+ */
 public class BankAccount {
     private double balance;
 
+    /**
+     * Constructor for BankAccount.
+     *
+     * @param balance The initial balance of the account.
+     */
     public BankAccount(double balance) {
         this.balance = balance;
     }
@@ -13,11 +21,10 @@ public class BankAccount {
         balance += amount;
     }
 
-    public void withdraw(double amount) {
-        if (amount <= balance) {
-            balance -= amount;
-        } else {
-            System.out.println("Not enough balance to withdraw " + amount);
+    public void withdraw(double amount) throws InsufficientFundsException {
+        if (amount > balance) {
+            throw new InsufficientFundsException("Insufficient balance.");
         }
+        balance -= amount;
     }
 }
