@@ -1,0 +1,14 @@
+# Ignore binary files
+*.class
+
+# Ignore compiled Java files in build directories
+build/
+out/
+
+# Ignore IDE-specific files
+.idea/
+*.iml
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
